@@ -82,4 +82,10 @@ class DashboardController extends Controller
     {
         //
     }
+
+
+
+    public function languageDemo(){
+        return view('languageDemo');
+    }
 }

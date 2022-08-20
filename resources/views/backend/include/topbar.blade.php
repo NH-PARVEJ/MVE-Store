@@ -4,13 +4,23 @@
           <div class="mobile-toggle-icon fs-3">
               <i class="bi bi-list"></i>
             </div>
-            <form class="searchbar">
-                <div class="position-absolute top-50 translate-middle-y search-icon ms-3"><i class="bi bi-search"></i></div>
-                <input class="form-control" type="text" placeholder="Type here to search">
-                <div class="position-absolute top-50 translate-middle-y search-close-icon"><i class="bi bi-x-lg"></i></div>
-            </form>
+          
             <div class="top-navbar-right ms-auto">
               <ul class="navbar-nav align-items-center">
+                <div class="dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="flag-icon flag-icon-{{Config::get('languages')[App::getLocale()]['flag-icon']}}"></span> {{ Config::get('languages')[App::getLocale()]['display'] }}
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    @foreach (Config::get('languages') as $lang => $language)
+                    @if ($lang != App::getLocale())
+                    <li><a class="dropdown-item" href="{{ route('lang.switch', $lang) }}"><span class="flag-icon flag-icon-{{$language['flag-icon']}}"></span> {{$language['display']}}</a></li>
+                    @endif
+                    @endforeach
+                  </ul>
+                </div>
+
+
                 <li class="nav-item search-toggle-icon">
                   <a class="nav-link" href="#">
                     <div class="">
@@ -30,7 +40,11 @@
                        <div class="d-flex align-items-center">
                           <img src="{{asset('backend/assets/images/avatars/avatar-1.png')}}" alt="" class="rounded-circle" width="54" height="54">
                           <div class="ms-3">
-                            <h6 class="mb-0 dropdown-user-name">Jhon Deo</h6>
+                            <h6 class="mb-0 dropdown-user-name">
+                            @if(Auth::check())
+                            {{Auth::user()->name}}
+                            @endif
+                            </h6>
                             <small class="mb-0 dropdown-user-designation text-secondary">HR Manager</small>
                           </div>
                        </div>
@@ -44,6 +58,7 @@
                            <div class="ms-3"><span>Profile</span></div>
                          </div>
                        </a>
+
                     </li>
                     <li>
                       <a class="dropdown-item" href="#">
@@ -79,11 +94,17 @@
                     </li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
-                      <a class="dropdown-item" href="authentication-signup-with-header-footer.html">
+                      <a class="dropdown-item" href="">
+                         <!-- Authentication -->
+                         <form method="POST" action="{{ route('logout') }}">
+                              @csrf
+                              <span onclick="event.preventDefault(); this.closest('form').submit();">
                          <div class="d-flex align-items-center">
                            <div class=""><i class="bi bi-lock-fill"></i></div>
-                           <div class="ms-3"><span>Logout</span></div>
-                         </div>
+                           <div class="ms-3">Logout</span>
+                            </form>
+                          </div>
+                         </div> 
                        </a>
                     </li>
                 </ul>
