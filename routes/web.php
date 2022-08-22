@@ -1,8 +1,11 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LanguageController;
+// Frontend Controller 
 use App\Http\Controllers\Frontend\PagesController;
+use App\Http\Controllers\Frontend\AuthenticationController;
+use App\Http\Controllers\Frontend\CartController;
+// Backend Controller 
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\VendorController;
@@ -23,7 +26,6 @@ use App\Http\Controllers\Backend\DashboardController;
 |
 */
 Route::get('lang/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
-Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
 
 /*
 |--------------------------------------------------------------------------
@@ -35,8 +37,36 @@ Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controller
 | contains the "web" middleware group. Now create something great!
 |
 */
+// frontend main pages
+Route::get('/', [PagesController::class, 'home_page'])->name('home_page');
+Route::get('/about-us', [PagesController::class, 'about'])->name('about');
+Route::get('/contact-us', [PagesController::class, 'contact'])->name('contact');
+Route::get('/terms-and-condetion', [PagesController::class, 'terms_and_condetion'])->name('terms-and-condetion');
+Route::get('/privacy-policy', [PagesController::class, 'privacy_policy'])->name('privacy_policy');
+Route::get('/return-refund', [PagesController::class, 'return_and_refund'])->name('return_and_refund');
+Route::get('/purchase-guide', [PagesController::class, 'purchase_guide'])->name('purchase_guide');
 
-Route::get('/', [PagesController::class, 'home'])->name('home');
+// Authentication Pages For Prontend
+route::group(['prefix' => '/customer'], function(){
+Route::get('/login', [AuthenticationController::class, 'login'])->name('customer_login');
+Route::get('/regester', [AuthenticationController::class, 'regester'])->name('customer_regester');
+Route::get('/forgot-password', [AuthenticationController::class, 'forgot_password'])->name('customer_forgot_password');
+Route::get('/reset_password', [AuthenticationController::class, 'reset_password'])->name('customer_reset_password');
+});
+
+//  Cart & Checkout pages
+Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+Route::get('/checkout', [PagesController::class, 'checkout'])->name('checkout');
+
+// product pages
+Route::get('/all-products', [PagesController::class, 'all_products'])->name('all_products');
+Route::get('/product-details', [PagesController::class, 'product_single_page'])->name('product_single_page');
+
+Route::get('/invoice', [PagesController::class, 'invoice'])->name('invoice');
+Route::get('/account', [PagesController::class, 'account'])->name('account');
+
+// 404 page
+Route::get('/404', [PagesController::class, 'page_not_found'])->name('404');
 
 
 

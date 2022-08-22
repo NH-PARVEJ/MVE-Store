@@ -46,8 +46,8 @@ class CurrencyController extends Controller
        $currency->save();
 
        $notification = array(
-        'message'    => 'success', 
-        'alert-type' => 'A New Currency Created Successfully'
+        'message'    => 'A New Currency Created Successfully', 
+        'alert-type' => 'success'
     );
      
        return redirect()->route('currency.manage')->with($notification);
@@ -97,8 +97,8 @@ class CurrencyController extends Controller
      
             $currency->save();
             $notification = array(
-                'message'    => 'info', 
-                'alert-type' => 'The Currency Information Updated'
+                'message'    => 'The Currency Information Updated', 
+                'alert-type' => 'info'
             );
             return redirect()->route('currency.manage')->with($notification);
         }
@@ -117,8 +117,8 @@ class CurrencyController extends Controller
         if(!is_null( $currency)){
             $currency->delete();
             $notification = array(
-                'message'    => 'error', 
-                'alert-type' => 'The Currency is Now On Soft Delete Mode'
+                'message'    => 'The Currency is Now On Soft Delete Mode', 
+                'alert-type' => 'error'
             );
             return redirect()->route('currency.manage')->with( $notification);
         }

@@ -46,8 +46,8 @@ class DivisionController extends Controller
           
        $division->save();
        $notification = array(
-        'message'    => 'success', 
-        'alert-type' => 'A New Division Created Successfully'
+        'message'    => 'A New Division Created Successfully', 
+        'alert-type' => 'success'
     );
        return redirect()->route('division.manage')->with($notification);
     }
@@ -95,8 +95,8 @@ class DivisionController extends Controller
         
         $division->save();
         $notification = array(
-            'message'    => 'info', 
-            'alert-type' => 'The Division Information Updated'
+            'message'    => 'The Division Information Updated', 
+            'alert-type' => 'info'
         );
        return redirect()->route('division.manage')->with($notification);
        }
@@ -115,8 +115,8 @@ class DivisionController extends Controller
         if(!is_null( $division)){
             $division->delete();
             $notification = array(
-                'message'    => 'error', 
-                'alert-type' => 'The Division is Now On Soft Delete Mode'
+                'message'    => 'The Division is Now On Soft Delete Mode', 
+                'alert-type' => 'error'
             );
             return redirect()->route('division.manage')->with($notification);
         }

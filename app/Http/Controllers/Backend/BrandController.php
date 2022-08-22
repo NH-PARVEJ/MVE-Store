@@ -58,8 +58,8 @@ class BrandController extends Controller
        $brand->save();
 
        $notification = array(
-        'message'    => 'success', 
-        'alert-type' => 'A New Brand Created Successfully'
+        'message'    => 'A New Brand Created Successfully', 
+        'alert-type' => 'success'
     );
      
        return redirect()->route('brand.manage')->with($notification);
@@ -123,8 +123,8 @@ class BrandController extends Controller
     }
             $brand->save();
             $notification = array(
-                'message'    => 'info', 
-                'alert-type' => 'The Brand Information Updated'
+                'message'    => 'The Brand Information Updated', 
+                'alert-type' => 'info'
             );
 
             return redirect()->route('brand.manage')->with($notification);
@@ -143,8 +143,8 @@ class BrandController extends Controller
         if(!is_null( $brand)){
             $brand->delete();
             $notification = array(
-                'message'    => 'error', 
-                'alert-type' => 'The Brand is Now On Soft Delete Mode'
+                'message'    => 'The Brand is Now On Soft Delete Mode', 
+                'alert-type' => 'error'
             );
             return redirect()->route('brand.manage')->with($notification);
         }

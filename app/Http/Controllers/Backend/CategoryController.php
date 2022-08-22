@@ -60,8 +60,8 @@ class CategoryController extends Controller
         $category->save();
 
         $notification = array(
-            'message'    => 'success', 
-            'alert-type' => 'A New Category Created Successfully'
+            'message'    => 'A New Category Created Successfully', 
+            'alert-type' => 'success'
         );
         return redirect()->route('category.manage')->with($notification);
     }
@@ -125,8 +125,8 @@ class CategoryController extends Controller
             $category->save();
 
             $notification = array(
-                'message'    => 'info', 
-                'alert-type' => 'The Category Information Updated'
+                'message'    => 'The Category Information Updated', 
+                'alert-type' => 'info'
             );
 
             return redirect()->route('category.manage')->with($notification );
@@ -145,8 +145,8 @@ class CategoryController extends Controller
         if(!is_null( $category)){
             $category->delete();
             $notification = array(
-                'message'    => 'error', 
-                'alert-type' => 'The Category is Now On Soft Delete Mode'
+                'message'    => 'The Category is Now On Soft Delete Mode', 
+                'alert-type' => 'error'
             );
             return redirect()->route('category.manage')->with($notification);
         }

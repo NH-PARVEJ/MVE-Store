@@ -46,8 +46,8 @@ class DistrictController extends Controller
 
         $district->save();
         $notification = array(
-            'message'    => 'info', 
-            'alert-type' => 'A New District Created Successfully'
+            'message'    => 'A New District Created Successfully', 
+            'alert-type' => 'success'
         );
        return redirect()->route('district.manage')->with($notification);
     }
@@ -97,8 +97,8 @@ class DistrictController extends Controller
 
         $district->save();
         $notification = array(
-            'message'    => 'info', 
-            'alert-type' => 'The District Information Updated'
+            'message'    => 'The District Information Updated', 
+            'alert-type' => 'info'
         );
         return redirect()->route('district.manage')->with($notification);
 
@@ -118,8 +118,8 @@ class DistrictController extends Controller
 
         $district->delete();
         $notification = array(
-            'message'    => 'error', 
-            'alert-type' => 'The District is Now On Soft Delete Mode'
+            'message'    => 'The District is Now On Soft Delete Mode', 
+            'alert-type' => 'error'
         );
         return redirect()->route('district.manage')->with($notification);
         }

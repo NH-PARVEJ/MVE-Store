@@ -96,8 +96,8 @@ class VendorController extends Controller
    
         $vendor->save();
         $notification = array(
-            'message'    => 'success', 
-            'alert-type' => 'A New Vendor Created Successfully'
+            'message'    => 'A New Vendor Created Successfully', 
+            'alert-type' => 'success'
         );
         return redirect()->route('vendor.manage')->with($notification);
     }
@@ -214,8 +214,8 @@ class VendorController extends Controller
 
         $vendor->save();
         $notification = array(
-            'message'    => 'info', 
-            'alert-type' => 'The Vendor Information Updated'
+            'message'    => 'The Vendor Information Updated', 
+            'alert-type' => 'info'
         );
         return redirect()->route('vendor.manage');
 
@@ -235,8 +235,8 @@ class VendorController extends Controller
         if(!is_null( $vendor)){
             $vendor->delete();
             $notification = array(
-                'message'    => 'error', 
-                'alert-type' => 'The Vendor is Now On Soft Delete Mode'
+                'message'    => 'The Vendor is Now On Soft Delete Mode', 
+                'alert-type' => 'error'
             );
             return redirect()->route('vendor.manage')->with($notification);
         }
